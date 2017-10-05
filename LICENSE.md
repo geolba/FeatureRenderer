@@ -1,0 +1,27 @@
+Copyright Information
+-----------
+
+Copyright (c) 2003-2017, Geologische Bundesanstalt Wien. All rights 
+reserved under the copyright laws of Austria. You may freely redistribute and use 
+this software, ttf-Fonts, ArcGIS-Styles with or without modification.
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+Disclaimer: THE software, ttf-Fonts, ArcGIS-Styles ARE 
+PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, 
+INCLUDING THE IMPLIED WARRANTIES OF MERCHANTABILITY AND 
+FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+IN NO EVENT SHALL Geologische Bundesanstalt Wien OR 
+CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, 
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES 
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; 
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) 
+SUSTAINED BY YOU OR A THIRD PARTY, HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT ARISING 
+IN ANY WAY OUT OF THE USE OF THIS software, ttf-Fonts, 
+ArcGIS-Styles, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+For additional information contact: Geologische Bundesanstalt Wien
+Schiegl, FA Kartografie und Grafik
+Email: martin.schiegl@geologie.ac.at

@@ -1,0 +1,72 @@
+﻿<Page x:Class="WpfRendererForm.Help.FeatureRendererOverView"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	    Title="LegendGenerator Copyright Information"
+	    Width="520" Height="581"
+	    Foreground="Blue" Margin="1">
+
+    <FlowDocumentReader ViewingMode="Page"  Margin="1" FontFamily="Calibri" Foreground="Black">
+        <FlowDocument>
+            <Paragraph TextAlignment="Center" FontSize="16pt">
+                <Bold>Program Overview</Bold>
+            </Paragraph>
+
+            <Paragraph>
+                <Bold>How does it work:</Bold>
+                <LineBreak/>
+                Running the map Renderer each entry of the "Unique Value Renderer" (individual values)
+                is compared with the ID entries of the unsorted legend table. If it found an equal 
+                value the symbol is copied into the renderer. If no hit, then an entry with the 
+                error symbol
+                <Run Foreground="Red">Err</Run> is used. So the map Renderer „paints“ the indicated layer with the 
+                fill, line, or marker symbols in accordance with the entries in the legend table. 
+                Presupposed the symbol names are available in the loaded styles. Entries in the table column 
+                „L_SYMB“ do not have influence in rendering the layer.
+            </Paragraph>
+            <Paragraph></Paragraph>
+            
+            <Paragraph>
+                <Bold>Program entries:</Bold>
+                <LineBreak/>
+                Procedure in rendering (symbolizing) different Layer in a ArcMap project (mxd) in ArcMap 10.0:               
+            </Paragraph>
+            <List>
+                <ListItem>
+                    <Paragraph>the name of the point, line or Polygonfeatureclass - Layers may occur in the Dataframe only once</Paragraph>
+                </ListItem>
+                <ListItem>
+                    <Paragraph>the renderer properties of the Layers must provide UniqueValueRenderer (individual value classification) with all desired values</Paragraph>
+                </ListItem>
+                <ListItem>
+                    <Paragraph>a legend table in a geodatabase to run the program</Paragraph>
+                </ListItem>
+            </List>
+
+            <Paragraph>
+                <LineBreak/>
+                <Bold>Description of the program parameters:</Bold>
+                <LineBreak/>
+                <LineBreak/>
+                The program “feature renderer” symbolizes all existing entries in the UniqueValueRenderer 
+                (individual value classification) of a given ArcMap Layer. Therefore the UniqueValueRenderer 
+                should contain (if desired?) all available values related to the legend table - with „AddAllValues“ 
+                added automatically.Legend entries can be excluded by manual preselection in the UniqueValueRenderer of the Layer.
+                <LineBreak/>
+                <LineBreak/>
+                Text boxes: layer name, geodatabase, and legend table must completely filled out.Necessary field names can 
+                be redefined. Contrary to the program “legend generator” the ID field is absolutely necessary in the 
+                legend table as relate from values in the UniqueValuesRenderer to the legend table.
+                <LineBreak/>
+                <LineBreak/>
+                Styles containing the pattern definitions must be already loaded in the project (see style manager).
+                <LineBreak/>
+                During the execution of the program the entries in the UniqueValuesRenderer 
+                (Layer Properties) - for those which do not have appropriate entries in the legend table, get the 
+                standard marker error symbol (Err). No matter if they are type of marker lines or fills. 
+                They can again be defined afterwards manual in the UniqueValuesRenderer by „removeValue “and „AddValue“ as fill or line.
+            </Paragraph>
+
+
+        </FlowDocument>
+    </FlowDocumentReader>
+</Page>

@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnClose" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="btnConfigUebernehmen" xml:space="preserve">
+    <value>Konfiguration speichern</value>
+  </data>
+  <data name="btnLoadConfiguration" xml:space="preserve">
+    <value>Konfiguration laden</value>
+  </data>
+  <data name="btnLoadSqlServerTables" xml:space="preserve">
+    <value>Lade SQL Server Tabellen</value>
+  </data>
+  <data name="btnRenderer" xml:space="preserve">
+    <value>UVRenderer Update</value>
+  </data>
+  <data name="mnuShowXml" xml:space="preserve">
+    <value>Zeige XML File</value>
+  </data>
+  <data name="btnSymbol" xml:space="preserve">
+    <value>Symbol Export</value>
+  </data>
+  <data name="chkAuthentifizierung" xml:space="preserve">
+    <value>  Use Sql Authentifizierung</value>
+  </data>
+  <data name="chkHintergrund" xml:space="preserve">
+    <value>  nur Hintergrundfarben</value>
+  </data>
+  <data name="chkSpracheDeutsch" xml:space="preserve">
+    <value>  Deutsch</value>
+  </data>
+  <data name="chkSpracheEnglisch" xml:space="preserve">
+    <value>  Englisch</value>
+  </data>
+  <data name="chkSqlServer" xml:space="preserve">
+    <value>  SDE - Legendentabelle</value>
+  </data>
+  <data name="chkUmriss" xml:space="preserve">
+    <value>  kein Umriss</value>
+  </data>
+  <data name="groupBox1" xml:space="preserve">
+    <value>Verbindungseigenschaften:</value>
+  </data>
+  <data name="groupBox2" xml:space="preserve">
+    <value>Interpretierte Schmuckfarben in %</value>
+  </data>
+  <data name="lblAccessdatenbank" xml:space="preserve">
+    <value>AccessDB:</value>
+  </data>
+  <data name="lblAufdruckBlau" xml:space="preserve">
+    <value>Aufdruck - BLAU:</value>
+  </data>
+  <data name="lblAufdruckBraun" xml:space="preserve">
+    <value>Aufdruck - BRAUN:</value>
+  </data>
+  <data name="lblAufdruckCyan" xml:space="preserve">
+    <value>Aufdruck - CYAN:</value>
+  </data>
+  <data name="lblAufdruckGelb" xml:space="preserve">
+    <value>Aufdruck - GELB:</value>
+  </data>
+  <data name="lblAufdruckGrau" xml:space="preserve">
+    <value>Aufdruck - GRAU:</value>
+  </data>
+  <data name="lblAufdruckGruen" xml:space="preserve">
+    <value>Aufdruck - GRÜN:</value>
+  </data>
+  <data name="lblAufdruckMagenta" xml:space="preserve">
+    <value>Aufdruck - MAGENTA:</value>
+  </data>
+  <data name="lblAufdruckOrange" xml:space="preserve">
+    <value>Aufdruck - ORANGE:</value>
+  </data>
+  <data name="lblAufdruckRot" xml:space="preserve">
+    <value>Aufdruck - ROT:</value>
+  </data>
+  <data name="lblDatabase" xml:space="preserve">
+    <value>Datenbank:</value>
+  </data>
+  <data name="lblFlaeche" xml:space="preserve">
+    <value>Flächensymbolname:</value>
+  </data>
+  <data name="lblInstance" xml:space="preserve">
+    <value>Instanz:</value>
+  </data>
+  <data name="lblKonfigurationsdatei" xml:space="preserve">
+    <value>Konfigurationsdatei:</value>
+  </data>
+  <data name="lblLayername" xml:space="preserve">
+    <value>Layername:</value>
+  </data>
+  <data name="lblLegendentabelle" xml:space="preserve">
+    <value>Legendentabelle:</value>
+  </data>
+  <data name="lblLinie" xml:space="preserve">
+    <value>Liniensymbolname:</value>
+  </data>
+  <data name="lblMarker" xml:space="preserve">
+    <value>Markersymbolname:</value>
+  </data>
+  <data name="lblPassword" xml:space="preserve">
+    <value>Passwort:</value>
+  </data>
+  <data name="lblServer" xml:space="preserve">
+    <value>Server:</value>
+  </data>
+  <data name="lblStyle" xml:space="preserve">
+    <value>Verwende ein Style File aus der ArcMap-StyleStorage:</value>
+  </data>
+  <data name="lblStylefile" xml:space="preserve">
+    <value>Check Symbol Style:</value>
+  </data>
+  <data name="lblSymbolDirectory" xml:space="preserve">
+    <value>Symbolexportordner:</value>
+  </data>
+  <data name="lblUser" xml:space="preserve">
+    <value>User:</value>
+  </data>
+  <data name="lblVerknuepfung" xml:space="preserve">
+    <value>Verknüpfungs ID:</value>
+  </data>
+  <data name="lblVersion" xml:space="preserve">
+    <value>Version:</value>
+  </data>
+  <data name="mnuAppClose" xml:space="preserve">
+    <value>Anwendung schließen</value>
+  </data>
+  <data name="mnuAppLoad" xml:space="preserve">
+    <value>Konfigurationsfile öffnen</value>
+  </data>
+  <data name="mnuAppSave" xml:space="preserve">
+    <value>Datei speichern</value>
+  </data>
+  <data name="mnuEinstellungen" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="mnuFile" xml:space="preserve">
+    <value>Datei</value>
+  </data>
+  <data name="mnuSpracheinstellungen" xml:space="preserve">
+    <value>Spracheinstellungen</value>
+  </data>
+  <data name="Window" xml:space="preserve">
+    <value>FeatureRenderer für ArcMap 10.0</value>
+  </data>
+  <data name="mnuAppSaveNew" xml:space="preserve">
+    <value>Datei speichern unter</value>
+  </data>
+  <data name="tabItemAccess" xml:space="preserve">
+    <value>Access Datenbank</value>
+  </data>
+  <data name="tabItemSde" xml:space="preserve">
+    <value>SDE Datenbank</value>
+  </data>
+  <data name="mnuAppHelp" xml:space="preserve">
+    <value>FeatureRenderer-Hilfe</value>
+  </data>
+  <data name="mnuHilfe" xml:space="preserve">
+    <value>Hilfe</value>
+  </data>
+  <data name="btnAppSaveNew" xml:space="preserve">
+    <value>Neues Projektfile (XML)</value>
+  </data>
+  <data name="chkAllLayers" xml:space="preserve">
+    <value>  alle sichtbaren Layer rendern</value>
+  </data>
+  <data name="checkBox1" xml:space="preserve">
+    <value>  Legendentext verändern</value>
+  </data>
+  <data name="chkUeberschrift" xml:space="preserve">
+    <value>  Optional eine Überschrift verwenden</value>
+  </data>
+  <data name="lblFeld1" xml:space="preserve">
+    <value>Feld 1:</value>
+  </data>
+  <data name="lblFeld2" xml:space="preserve">
+    <value>Feld 2:</value>
+  </data>
+  <data name="lblTrennzeichen" xml:space="preserve">
+    <value>Trennzeichen:</value>
+  </data>
+  <data name="lblUeberschrift" xml:space="preserve">
+    <value>Überschrift:</value>
+  </data>
+  <data name="mnuLayerExport" xml:space="preserve">
+    <value>Layer Export</value>
+  </data>
+  <data name="tabItemDatabase" xml:space="preserve">
+    <value>Datenbankspalten</value>
+  </data>
+  <data name="tabItemDatabaseOptional" xml:space="preserve">
+    <value>optionale Datenbankspalten</value>
+  </data>
+  <data name="mnuSymbolExport" xml:space="preserve">
+    <value>Symbol export</value>
+  </data>
+  <data name="btnStylefileAdd" xml:space="preserve">
+    <value>Stylefile hinzufügen</value>
+  </data>
+  <data name="lblStylefileLabel1" xml:space="preserve">
+    <value>Wählen Sie bitte ein Stylefile:</value>
+  </data>
+  <data name="lblStylefileLabel2" xml:space="preserve">
+    <value>Stylefile:</value>
+  </data>
+  <data name="lblSymbolLabel" xml:space="preserve">
+    <value>Wählen Sie bitte einen Ordner für den Image Export:</value>
+  </data>
+  <data name="mnuAppAbout" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="mnuInfo" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="mnuLoadStylefile" xml:space="preserve">
+    <value>Stylefile laden</value>
+  </data>
+  <data name="lblSortierspalte" xml:space="preserve">
+    <value>Sortierspalte:</value>
+  </data>
+  <data name="btnLoadAccessTables" xml:space="preserve">
+    <value>Lade Access-Tabellen</value>
+  </data>
+  <data name="chkAccess" xml:space="preserve">
+    <value>  Verwende Access</value>
+  </data>
+  <data name="chkSde" xml:space="preserve">
+    <value>  Verwende Sde</value>
+  </data>
+  <data name="mnuDatenbankeinstellungen" xml:space="preserve">
+    <value>Datenbankeinstellungen</value>
+  </data>
+  <data name="mnuVerbindung" xml:space="preserve">
+    <value>Verbindungseinstellungen</value>
+  </data>
+  <data name="lblProjectfile" xml:space="preserve">
+    <value>Konfigurations File</value>
+  </data>
+  <data name="grpEinstellungen" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+</root>

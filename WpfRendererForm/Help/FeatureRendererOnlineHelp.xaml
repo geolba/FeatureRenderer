@@ -1,0 +1,19 @@
+﻿<Page x:Class="WpfRendererForm.Help.FeatureRendererOnlineHelp"
+       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	    Title="FeatureRenderer Online Manual">
+
+    <FlowDocumentReader ViewingMode="Page"  FontFamily="Calibri" Foreground="Black" Height="227" Width="591">
+        <FlowDocument>
+            <Paragraph TextAlignment="Center" FontSize="16pt">
+                <Bold>Online Manual</Bold>
+            </Paragraph>
+
+            <Paragraph>
+                A detailed online
+                <Hyperlink NavigateUri="http://www.geologie.ac.at/">tutorial</Hyperlink> will come along with the new release!
+            </Paragraph>
+        </FlowDocument>
+    </FlowDocumentReader>
+
+</Page>

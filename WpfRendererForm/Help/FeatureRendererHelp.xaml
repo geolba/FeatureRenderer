@@ -1,0 +1,32 @@
+﻿<NavigationWindow x:Class="WpfRendererForm.Help.FeatureRendererHelp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	    Title="FeatureRenderer Help"              
+	    Height="650" Width="1000"
+	    ShowInTaskbar="False"
+	    WindowStartupLocation="CenterScreen"
+	    Foreground="Blue" Icon="/WpfRendererForm;component/Resources/Images/gba.png">
+
+    <NavigationWindow.Content >
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="80*" />
+            </Grid.ColumnDefinitions>
+
+            <TreeView x:Name="tree" FontSize="10pt" SelectedItemChanged="HelponselectedItemChanged">
+                <TreeViewItem Header="Copyright Information" Tag="FeatureRendererCopyright.xaml"/>
+                <TreeViewItem Header="Program Overview" Tag="FeatureRendererOverView.xaml" />
+                <TreeViewItem Header="Online Manual" Tag="FeatureRendererOnlineHelp.xaml" />
+                <TreeViewItem x:Name="userManual" Header="User Manual" Tag="FeatureRendererXpsHelp.xaml"/>
+                <TreeViewItem x:Name="userManualEn" Header="English User Manual" Tag="FeatureRendererXpsHelpEn.xaml" IsSelected="True" />
+            </TreeView>
+
+            <GridSplitter Grid.Column="1" Width="6" HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+
+            <Frame x:Name="frame" Grid.Column="2" />
+        </Grid>
+    </NavigationWindow.Content>
+    </NavigationWindow>
+

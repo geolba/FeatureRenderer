@@ -1,0 +1,369 @@
+﻿<Window x:Class="WpfRendererForm.FeatureRendererWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:resx="clr-namespace:WpfRendererForm.Resources"
+        xmlns:local="clr-namespace:WpfRendererForm.UserControls" WindowStartupLocation="CenterScreen"
+        Height="635" Width="709" Loaded="Window_Loaded" ResizeMode="CanResize" Title="FeatureRenderer 5.11 für ArcMap 10.3" Icon="/WpfRendererForm;component/Resources/Images/gba.png" Closing="Window_Closing_1" WindowStyle="ToolWindow">
+    
+    <Window.Resources>
+        <ResourceDictionary>          
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Backgrounds.xaml"/>
+                <ResourceDictionary Source="Resources/Theme.xaml"/>
+                <ResourceDictionary Source="Resources/Graphics.xaml"/>
+                <ResourceDictionary Source="Resources/ConverterResourcen.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>       
+    </Window.Resources>    
+    <Window.Background>
+       <StaticResource ResourceKey="WindowBackground"/>
+    </Window.Background>
+
+    <DockPanel Name="LayoutRoot" Width="Auto" Height="Auto">
+
+        <Menu DockPanel.Dock="Top" Height="26" VerticalAlignment="Center" VerticalContentAlignment="Stretch" >
+            <MenuItem Name="mnuFile" Header="{x:Static Member=resx:Resource.mnuFile}"  Height="26" HorizontalAlignment="Stretch" HorizontalContentAlignment="Left">
+                <MenuItem Name="mnuAppSave" Header="{x:Static Member=resx:Resource.mnuAppSave}" Foreground="Black" FontWeight="Medium" Icon="{DynamicResource ResourceKey=imgSave}" Click="SaveObjectButton_Click" />
+                <MenuItem Name="mnuAppSaveNew" Header="{x:Static resx:Resource.mnuAppSaveNew}" Foreground="Black" FontWeight="Medium" Icon="{DynamicResource ResourceKey=imgSave}" Click="mnuAppSaveNew_Click" />
+                <MenuItem Name="mnuAppLoad" Header="{x:Static Member=resx:Resource.mnuAppLoad}" Foreground="Black" FontWeight="Medium" Icon="{DynamicResource ResourceKey=imgLoad}" Click="mnuAppLoad_Click" />
+                    <!--<MenuItem Name="mnuShowXml" Header="{x:Static Member=resx:Resource.mnuShowXml}" Icon="{DynamicResource ResourceKey=imgView}" Click="btnShowXml_Click "/>-->
+                    <Separator />
+                <MenuItem Name="mnuAppClose" Header="{x:Static Member=resx:Resource.mnuAppClose}" Click="mnuAppClose_Click" Foreground="Black" FontWeight="Medium" Icon="{DynamicResource ResourceKey=appClose}"/>
+            </MenuItem>
+            
+            
+
+            <!--Menü Einstellungen -->
+                <MenuItem Name="mnuEinstellungen" Header="{x:Static Member=resx:Resource.mnuEinstellungen}">
+                <MenuItem Name="mnuSpracheinstellungen" Header="{x:Static Member=resx:Resource.mnuSpracheinstellungen}" Foreground="Black" FontWeight="Medium" Icon="{DynamicResource ResourceKey=imgEinstellungen}">
+                    <CheckBox Name="chkSpracheDeutsch" Content="{x:Static Member=resx:Resource.chkSpracheDeutsch}"  Checked="chkSpracheDeutsch_Checked" Unchecked="chkSpracheDeutsch_Unchecked" />
+                        <CheckBox Name="chkSpracheEnglisch" Content="{x:Static Member=resx:Resource.chkSpracheEnglisch}" Checked="chkSpracheEnglisch_Checked" Unchecked="chkSpracheEnglisch_Unchecked" />
+                    </MenuItem>
+                <MenuItem Name="mnuLoadStylefile" Header="{x:Static Member=resx:Resource.mnuLoadStylefile}" Click="mnuLoadStylefile_Click" Foreground="Black" FontWeight="Medium" Icon="{DynamicResource ResourceKey=imgLoadStyleFile}" ></MenuItem>
+                </MenuItem>
+
+            <MenuItem Name="mnuExport" Header="Export">
+                <MenuItem Name="mnuSymbolExport" Click="mnuSymbol_Click" Header="{x:Static Member=resx:Resource.mnuSymbolExport}" Foreground="Black" FontWeight="Medium" Icon="{DynamicResource ResourceKey=imgSymbol}" />
+            </MenuItem>
+
+            <MenuItem Name="mnuInfo" Header="{x:Static Member=resx:Resource.mnuInfo}">
+                <MenuItem Name="mnuAppAbout"  Header="{x:Static Member=resx:Resource.mnuAppAbout}" Click="mnuAppAbout_Click" Foreground="Black" FontWeight="Medium" Icon="{DynamicResource imgInfo}" />
+            </MenuItem>
+                
+            <MenuItem Name="mnuHilfe" Header="{x:Static resx:Resource.mnuHilfe}" >
+                <MenuItem Name="mnuAppHelp" Header="{x:Static resx:Resource.mnuAppHelp}" Click="mnuAppHelp_Click" Foreground="Black" FontWeight="Medium" Icon="{DynamicResource ResourceKey=imgHilfe}" />
+                
+            </MenuItem>
+        </Menu>
+
+        <!--STATUS BAR-->
+        <StatusBar DockPanel.Dock="Bottom" Grid.Row="3" Grid.ColumnSpan="3" Height="20">
+            <StatusBar.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="White" Offset="0" />
+                    <GradientStop Color="#FFC4BDBD" Offset="1" />
+                </LinearGradientBrush>
+            </StatusBar.Background>
+            <StatusBarItem Name="staLblMessage" Content="" x:FieldModifier="public" FontSize="12" Foreground="Black"  HorizontalContentAlignment="Left"></StatusBarItem>
+            <!--<StatusBarItem Name="staLblProjectfile" Content="" x:FieldModifier="public" FontSize="12" Margin="5,0,0,0"  Foreground="Black" HorizontalContentAlignment="Right"></StatusBarItem>-->
+            <!--<StatusBarItem>
+                <TextBlock>Status:</TextBlock>
+            </StatusBarItem>
+            <StatusBarItem >
+                <ProgressBar  x:Name="pgbStatus" Width ="200" Height="15" HorizontalContentAlignment="Right"  />
+            </StatusBarItem>-->          
+        </StatusBar>
+        
+
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+
+            <Canvas Width="683" Height="528">
+
+
+                <!--<Canvas Width="664" Height="528">-->
+                <GroupBox  Grid.Row="1" Grid.Column="1" Canvas.Left="345" Canvas.Top="42" Header="{x:Static Member=resx:Resource.groupBox2}" Height="279" Name="groupBox2" Width="332">
+                <Canvas>
+                    <Label Canvas.Left="6" Canvas.Top="7" Content="{x:Static Member=resx:Resource.lblAufdruckRot}" Name="lblAufdruckRot" Width="109" />
+                        <TextBox Canvas.Left="123" Canvas.Top="5"  Name="txtRoc" Width="32" Text="0" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="170" Canvas.Top="4" Height="23" Name="txtRom" Width="32" Text="100" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="217" Canvas.Top="4" Height="23" Name="txtRoy" Width="32" Text="100" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="264" Canvas.Top="4" Height="23" Name="txtRok" Width="32" Text="21" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="123" Canvas.Top="30" Height="23" Name="txtBlc" Width="32" Text="70" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="170" Canvas.Top="30" Height="23" Name="txtBlm" Width="32" Text="30" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="217" Canvas.Top="30" Height="23" Name="txtBly" Width="32" Text="0" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="264" Canvas.Top="30" Height="23" Name="txtBlk" Width="32" Text="21" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="123" Canvas.Top="57" Height="23" Name="txtGrc" Width="32" Text="70" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="170" Canvas.Top="57" Height="23" Name="txtGrm" Width="32" Text="0" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="217" Canvas.Top="57" Height="23" Name="txtGry" Width="32" Text="100" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="264" Canvas.Top="57" Height="23" Name="txtGrk" Width="32" Text="21" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="123" Canvas.Top="84" Height="23" Name="txtBrc" Width="32" Text="20" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="170" Canvas.Top="84" Height="23" Name="txtBrm" Width="32" Text="50" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="217" Canvas.Top="84" Height="23" Name="txtBry" Width="32" Text="60" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="264" Canvas.Top="84" Height="23" Name="txtBrk" Width="32" Text="21" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="123" Canvas.Top="111" Height="23" Name="txtGac" Width="32" Text="10" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="170" Canvas.Top="111" Height="23" Name="txtGam" Width="32" Text="10" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="217" Canvas.Top="111" Height="23" Name="txtGay" Width="32" Text="10" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="264" Canvas.Top="111" Height="23" Name="txtGak" Width="32" Text="21" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="123" Canvas.Top="138" Height="23" Name="txtMac" Width="32" Text="0" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="170" Canvas.Top="138" Height="23" Name="txtMam" Width="32" Text="100" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="217" Canvas.Top="138" Height="23" Name="txtMay" Width="32" Text="0" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="264" Canvas.Top="138" Height="23" Name="txtMak" Width="32" Text="21" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="123" Canvas.Top="165" Height="23" Name="txtCyc" Width="32" Text="100" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="170" Canvas.Top="165" Height="23" Name="txtCym" Width="32" Text="0" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="217" Canvas.Top="165" Height="23" Name="txtCyy" Width="32" Text="0" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="264" Canvas.Top="165" Height="23" Name="txtCyk" Width="32" Text="21" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="123" Canvas.Top="192" Height="23" Name="txtGec" Width="32" Text="0" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="170" Canvas.Top="192" Height="23" Name="txtGem" Width="32" Text="0" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="217" Canvas.Top="192" Height="23" Name="txtGey" Width="32" Text="100" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="264" Canvas.Top="192" Height="23" Name="txtGek" Width="32" Text="21" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="123" Canvas.Top="219" Height="23" Name="txtOrc" Width="32" Text="0" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="170" Canvas.Top="219" Height="23" Name="txtOrm" Width="32" Text="30" FlowDirection="RightToLeft" />
+                        <TextBox Canvas.Left="217" Canvas.Top="219" Height="23" Name="txtOry" Width="32" Text="100" FlowDirection="RightToLeft"/>
+                        <TextBox Canvas.Left="264" Canvas.Top="219" Height="23" Name="txtOrk" Width="32" Text="21" FlowDirection="RightToLeft"/>
+                    <Label Canvas.Left="6" Canvas.Top="32" Content="{x:Static Member=resx:Resource.lblAufdruckBlau}"  Name="lblAufdruckBlau" Width="109" />
+                    <Label Canvas.Left="6" Canvas.Top="59" Content="{x:Static Member=resx:Resource.lblAufdruckGruen}"  Name="lblAufdruckGruen" Width="109" />
+                    <Label Canvas.Left="6" Canvas.Top="86" Content="{x:Static Member=resx:Resource.lblAufdruckBraun}" Name="lblAufdruckBraun" Width="109" />
+                    <Label Canvas.Left="6" Canvas.Top="140" Content="{x:Static Member=resx:Resource.lblAufdruckMagenta}"  Name="lblAufdruckMagenta" Width="109" />
+                    <Label Canvas.Left="6" Canvas.Top="113" Content="{x:Static Member=resx:Resource.lblAufdruckGrau}" Name="lblAufdruckGrau" Width="109" />
+                    <Label Canvas.Left="6" Canvas.Top="167" Content="{x:Static Member=resx:Resource.lblAufdruckCyan}"  Name="lblAufdruckCyan" Width="109" />
+                    <Label Canvas.Left="6" Canvas.Top="194" Content="{x:Static Member=resx:Resource.lblAufdruckGelb}"  Name="lblAufdruckGelb" Width="109" />
+                    <Label Canvas.Left="6" Canvas.Top="221" Content="{x:Static Member=resx:Resource.lblAufdruckOrange}"  Name="lblAufdruckOrange" Width="109" />
+                    <Rectangle Canvas.Left="302" Canvas.Top="6" Height="20" Name="displayRedRectangle" Stroke="Black" StrokeThickness="1" RadiusX="5" RadiusY="5" Width="14">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <MultiBinding Converter="{StaticResource ResourceKey=CustomConverter}">
+                                        <Binding ElementName="txtRoc" Path="Text" />
+                                        <Binding ElementName="txtRom" Path="Text" />
+                                        <Binding ElementName="txtRoy" Path="Text" />
+                                        <Binding ElementName="txtRok" Path="Text" />
+                                    </MultiBinding>
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle Canvas.Left="302" Canvas.Top="30" Height="20" Name="displayBlueRectangle" Stroke="Black" StrokeThickness="1" RadiusX="5" RadiusY="5" Width="14">
+                            <Rectangle.Fill>
+                                <SolidColorBrush>
+                                    <SolidColorBrush.Color>
+                                        <MultiBinding Converter="{StaticResource ResourceKey=CustomConverter}">
+                                            <Binding ElementName="txtBlc" Path="Text" />
+                                            <Binding ElementName="txtBlm" Path="Text" />
+                                            <Binding ElementName="txtBly" Path="Text" />
+                                            <Binding ElementName="txtBlk" Path="Text" />
+                                        </MultiBinding>
+                                    </SolidColorBrush.Color>
+                                </SolidColorBrush>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    <Rectangle Canvas.Left="302" Canvas.Top="57" Height="20" Name="displayGreenRectangle" Stroke="Black" StrokeThickness="1" RadiusX="5" RadiusY="5" Width="14">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <MultiBinding Converter="{StaticResource ResourceKey=CustomConverter}">
+                                        <Binding ElementName="txtGrc" Path="Text" />
+                                        <Binding ElementName="txtGrm" Path="Text" />
+                                        <Binding ElementName="txtGry" Path="Text" />
+                                        <Binding ElementName="txtGrk" Path="Text" />
+                                    </MultiBinding>
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle Canvas.Left="302" Canvas.Top="84" Height="20" Name="displayBrownRectangle" Stroke="Black" StrokeThickness="1" RadiusX="5" RadiusY="5" Width="14">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <MultiBinding Converter="{StaticResource ResourceKey=CustomConverter}">
+                                        <Binding ElementName="txtBrc" Path="Text" />
+                                        <Binding ElementName="txtBrm" Path="Text" />
+                                        <Binding ElementName="txtBry" Path="Text" />
+                                        <Binding ElementName="txtBrk" Path="Text" />
+                                    </MultiBinding>
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle Canvas.Left="302" Canvas.Top="111" Height="20" Name="displayGrayRectangle" Stroke="Black" StrokeThickness="1" RadiusX="5" RadiusY="5" Width="14">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <MultiBinding Converter="{StaticResource ResourceKey=CustomConverter}">
+                                        <Binding ElementName="txtGac" Path="Text" />
+                                        <Binding ElementName="txtGam" Path="Text" />
+                                        <Binding ElementName="txtGay" Path="Text" />
+                                        <Binding ElementName="txtGak" Path="Text" />
+                                    </MultiBinding>
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle Canvas.Left="302" Canvas.Top="138" Height="20" Name="displayMagentaRectangle" Stroke="Black" StrokeThickness="1" RadiusX="5" RadiusY="5" Width="14">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <MultiBinding Converter="{StaticResource ResourceKey=CustomConverter}">
+                                        <Binding ElementName="txtMac" Path="Text" />
+                                        <Binding ElementName="txtMam" Path="Text" />
+                                        <Binding ElementName="txtMay" Path="Text" />
+                                        <Binding ElementName="txtMak" Path="Text" />
+                                    </MultiBinding>
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle Canvas.Left="302" Canvas.Top="165" Height="20" Name="displayCyanRectangle" Stroke="Black" StrokeThickness="1" RadiusX="5" RadiusY="5" Width="14">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <MultiBinding Converter="{StaticResource ResourceKey=CustomConverter}">
+                                        <Binding ElementName="txtCyc" Path="Text" />
+                                        <Binding ElementName="txtCym" Path="Text" />
+                                        <Binding ElementName="txtCyy" Path="Text" />
+                                        <Binding ElementName="txtCyk" Path="Text" />
+                                    </MultiBinding>
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle Canvas.Left="302" Canvas.Top="192" Height="20" Name="displayYellowRectangle" Stroke="Black" StrokeThickness="1" RadiusX="5" RadiusY="5" Width="14">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <MultiBinding Converter="{StaticResource ResourceKey=CustomConverter}">
+                                        <Binding ElementName="txtGec" Path="Text" />
+                                        <Binding ElementName="txtGem" Path="Text" />
+                                        <Binding ElementName="txtGey" Path="Text" />
+                                        <Binding ElementName="txtGek" Path="Text" />
+                                    </MultiBinding>
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    <Rectangle Canvas.Left="302" Canvas.Top="219" Height="20" Name="displayOrangeRectangle" Stroke="Black" StrokeThickness="1" RadiusX="5" RadiusY="5" Width="14">
+                        <Rectangle.Fill>
+                            <SolidColorBrush>
+                                <SolidColorBrush.Color>
+                                    <MultiBinding Converter="{StaticResource ResourceKey=CustomConverter}">
+                                        <Binding ElementName="txtOrc" Path="Text" />
+                                        <Binding ElementName="txtOrm" Path="Text" />
+                                        <Binding ElementName="txtOry" Path="Text" />
+                                        <Binding ElementName="txtOrk" Path="Text" />
+                                    </MultiBinding>
+                                </SolidColorBrush.Color>
+                            </SolidColorBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                    </Canvas>
+            </GroupBox>
+
+                <TabControl Grid.Row="1" Grid.Column="0" Canvas.Left="7" Canvas.Top="42" Height="278" Name="tabControl1" Width="325" AllowDrop="False">
+                <TabItem Header="{x:Static Member=resx:Resource.tabItemAccess}" Name="tabItemAccess" AllowDrop="False">
+                    <Canvas>
+                        <Label Canvas.Left="6" Canvas.Top="41" Content="{x:Static Member=resx:Resource.lblAccessdatenbank}"  Name="lblAccessdatenbank" Width="70" />
+                        <TextBox Canvas.Left="74" Canvas.Top="39"  Name="txtAccessdatenbank" Width="204" Background="MistyRose" Text="-- select a database --" />
+                        <Button Canvas.Left="281" Canvas.Top="39" Content="{DynamicResource imgLoad}" Height="23" Name="btnLoadAccessDb" Width="30" Background="White" Click="btnLoadAccessDB_Click" />
+                        <Button Canvas.Left="74" Canvas.Top="204" Content="{x:Static Member=resx:Resource.btnLoadAccessTables}" Height="23" Name="btnLoadAccessTables" Width="204" Click="btnLoadAccessTables_Click" />
+                        <CheckBox Name="chkAccess" Content="{x:Static Member=resx:Resource.chkAccess}" Checked="chkAccess_Checked" Unchecked="chkAccess_Unchecked" IsChecked="True" Canvas.Left="9" Canvas.Top="17" />
+                    </Canvas>
+                </TabItem>
+                <TabItem Header="{x:Static Member=resx:Resource.tabItemSde}" Name="tabItemSde">
+                    <Canvas>
+                            <CheckBox Name="chkSde" Content="{x:Static Member=resx:Resource.chkSde}" Checked="chkSde_Checked" Unchecked="chkSde_Unchecked" Canvas.Left="14" Canvas.Top="6" />
+                            <CheckBox Canvas.Left="141" Canvas.Top="5" Content="{x:Static Member=resx:Resource.chkAuthentifizierung}" Height="21" Name="chkAuthentifizierung" Checked="chkAuthentifizierung_Checked" Unchecked="chkAuthentifizierung_Unchecked" IsEnabled="False" />
+                        <Label Canvas.Left="6" Canvas.Top="51" Content="{x:Static Member=resx:Resource.lblServer}" Name="lblServer" Width="79" />
+                        <TextBox Canvas.Left="114" Canvas.Top="49" Height="23" Name="txtServer" Width="195" Text="obelix" x:FieldModifier="public" IsEnabled="False" />
+                        <Label Canvas.Left="6" Canvas.Top="80" Content="{x:Static Member=resx:Resource.lblInstance}"  Name="lblInstance" Width="79" />
+                        <TextBox Canvas.Left="114" Canvas.Top="78" Height="23" Name="txtInstance" Width="195" Text="sde:sqlserver:obelix" x:FieldModifier="public" IsEnabled="False" />
+                        <Label Canvas.Left="6" Canvas.Top="109" Content="{x:Static Member=resx:Resource.lblDatabase}" Name="lblDatabase" Width="79" />
+                        <TextBox Canvas.Left="114" Canvas.Top="107" Height="23" Name="txtDatabase" Width="195" Text="C01" x:FieldModifier="public" IsEnabled="False" />
+                        <Label Canvas.Left="6" Canvas.Top="138" Content="{x:Static Member=resx:Resource.lblUser}"  Name="lblUser" x:FieldModifier="public" Width="79" />
+                        <TextBox Canvas.Left="114" Canvas.Top="136" Height="23" Name="txtUser" Width="195" x:FieldModifier="public" IsEnabled="False" />
+                        <Label Canvas.Left="6" Canvas.Top="167" Content="{x:Static Member=resx:Resource.lblPassword}"  Name="lblPassword" Width="79" />
+                        <TextBox Canvas.Left="114" Canvas.Top="165" Height="23" Name="txtPassword" Width="195" x:FieldModifier="public" IsEnabled="False" />
+                        <Label Canvas.Left="6" Canvas.Top="196" Content="{x:Static Member=resx:Resource.lblVersion}"  Name="lblVersion" Width="79" />
+                            <TextBox Canvas.Left="114" Canvas.Top="194" Height="23" Name="txtVersion" Width="195" Text="sde.DEFAULT" x:FieldModifier="public" IsEnabled="False" />
+                        <Button Canvas.Left="114" Canvas.Top="222" Content="{x:Static Member=resx:Resource.btnLoadSqlServerTables}" Height="23" Name="btnLoadSqlServerTables" Width="195" Click="btnLoadSqlServerTables_Click" IsEnabled="False" />
+                        <CheckBox Canvas.Left="14" Canvas.Top="29" Content=" Direct Connect" Height="16" Name="chkDirectConnect" />
+                        </Canvas>
+                </TabItem>
+            </TabControl>
+
+                <TabControl  Grid.Row="2" Grid.Column="0" Canvas.Left="6" Canvas.Top="327" Height="197" Name="tabControl2" Width="325">
+                    <TabItem Header="{x:Static Member=resx:Resource.tabItemDatabase}" Name="tabItemDatabase">
+                    <Canvas>
+                        <Label Canvas.Left="6" Canvas.Top="13" Content="Legendentabelle:"  Name="lblLegendentabelle" Width="120" />
+                        <ComboBox Background="MistyRose" Canvas.Left="116" Canvas.Top="11" Height="23"  Name="cboTable" Width="195" x:FieldModifier="public" SelectionChanged="cboTable_SelectionChanged" IsEditable="True" Text="" IsReadOnly="True" />
+                        <Label Canvas.Left="6" Canvas.Top="41" Content="{x:Static Member=resx:Resource.lblVerknuepfung}"  Name="lblVerknuepfung" Width="120" />
+                        <ComboBox Canvas.Left="116" Canvas.Top="39" Height="23" Name="cboVerknuepfung" Width="195"  IsEditable="True" IsEnabled="False" IsReadOnly="False" />
+                        <Label Canvas.Left="7" Canvas.Top="71" Content="{x:Static Member=resx:Resource.lblFlaeche}" Name="lblFlaeche" Width="120" />
+                        <ComboBox Canvas.Left="115" Canvas.Top="69" Height="23" Name="cboFlaeche" Width="196"  IsEditable="True" IsEnabled="False" IsReadOnly="False" />
+                        <Label Canvas.Left="6" Canvas.Top="100" Content="{x:Static Member=resx:Resource.lblLinie}" Name="lblLinie" Width="120" />
+                        <ComboBox Canvas.Left="115" Canvas.Top="98" Height="23" Name="cboLinie" Width="196" IsEditable="True" IsEnabled="False" IsReadOnly="False" />
+                        <Label Canvas.Left="7" Canvas.Top="129" Content="{x:Static Member=resx:Resource.lblMarker}"  Name="lblMarker" Width="120" />
+                        <ComboBox Canvas.Left="115" Canvas.Top="127" Height="23" Name="cboMarker" Width="195" IsEditable="True" IsEnabled="False" IsReadOnly="False" />
+                        </Canvas>
+                </TabItem>
+                    <TabItem Header="{x:Static Member=resx:Resource.tabItemDatabaseOptional}" Name="tabItemDatabaseOptional">
+                    <Canvas>
+                            <CheckBox Canvas.Left="6" Canvas.Top="7" Content="{x:Static Member=resx:Resource.checkBox1}" Height="16" Name="checkBox1" Checked="checkBox1_Checked" IsChecked="False" Unchecked="checkBox1_Unchecked" />
+                            <Label Canvas.Left="5" Canvas.Top="34" Content="{x:Static Member=resx:Resource.lblTrennzeichen}"  Name="lblTrennzeichen" IsEnabled="False" />
+                        <ComboBox Canvas.Left="115" Canvas.Top="29" Height="23" Name="cboTrennzeichen" Width="195" SelectedIndex="0" IsEnabled="False">
+                            <ComboBoxItem Content="-" />
+                            <ComboBoxItem Content="+ " />
+                            <ComboBoxItem Content="/" />
+                            <ComboBoxItem Content="whitespace" />
+                            </ComboBox>
+                            <Label Canvas.Left="7" Canvas.Top="60" Content="{x:Static Member=resx:Resource.lblFeld1}"  Name="lblFeld1" IsEnabled="False" />
+                            <Label Canvas.Left="5" Canvas.Top="89" Content="{x:Static Member=resx:Resource.lblFeld2}"  Name="lblFeld2" IsEnabled="False" />
+                            <ComboBox Background="{x:Null}" Canvas.Left="115" Canvas.Top="58" Height="23" IsEditable="True" Name="cboFeld1" Text="" Width="195" IsEnabled="False" />
+                            <ComboBox Background="{x:Null}" Canvas.Left="115" Canvas.Top="87" Height="23" IsEditable="True" Name="cboFeld2" Text="" Width="195" IsEnabled="False" />
+                            <Label Canvas.Left="1" Canvas.Top="137" Content="{x:Static Member=resx:Resource.lblUeberschrift}" Name="lblUeberschrift" IsEnabled="False" />
+                            <ComboBox Background="{x:Null}" Canvas.Left="115" Canvas.Top="135" Height="23" IsEditable="True" IsEnabled="False" Name="cboUeberschrift" Text="" Width="195" />
+                            <CheckBox Canvas.Left="5" Canvas.Top="112" Content="{x:Static Member=resx:Resource.chkUeberschrift}" Height="16" Name="chkUeberschrift" Checked="chkUeberschrift_Checked" Unchecked="chkUeberschrift_Unchecked" />
+                        </Canvas>
+                </TabItem>
+            </TabControl>
+
+                <GroupBox  Grid.Row="2" Grid.Column="1" Canvas.Left="345" Canvas.Top="327" Header="{x:Static Member=resx:Resource.grpEinstellungen}" Height="197" Name="grpEinstellungen" Width="332">
+                <Canvas>
+                    <CheckBox Canvas.Left="6" Canvas.Top="71" Content="{x:Static Member=resx:Resource.chkHintergrund}" Name="chkHintergrund" Width="157" />
+                    <CheckBox Canvas.Left="172" Canvas.Top="71" Content="{x:Static Member=resx:Resource.chkUmriss}"  Name="chkUmriss" Width="98" />
+                    <ComboBox Canvas.Left="6" Canvas.Top="40" Height="23" Name="cboStyleFile" Width="264" Background="{x:Null}" Text="" />
+                    <!--<TextBox Canvas.Left="6" Canvas.Top="69" Height="23" Name="txtStyleManually" Width="338" Text="{Binding Path=Text, ElementName=cboStyleFile, Mode=TwoWay}" Background="White" OpacityMask="#FF404842" TextChanged="txtStyleManually_TextChanged" IsReadOnly="True" />-->
+                    <Label Canvas.Left="6" Canvas.Top="6" Content="Verwende ein Style File aus der ArcMap-StyleStorage:" Height="28" Name="lblStyle" Width="338" />
+                    <!--<Button Canvas.Left="314" Canvas.Top="40" Content="{DynamicResource imgInfo}" Height="23" Name="button1" Width="30" Click="button1_Click" />-->
+                    <Image x:Name="InfoImage" Canvas.Left="280" Canvas.Top="40" Margin="0" Source="Resources/Images/info.png" Stretch="None"   Width="16" Height="16"   VerticalAlignment="Bottom" HorizontalAlignment="Right" ToolTip="Erweiterte Informationen" SnapsToDevicePixels="True" MouseEnter="InfoImage_MouseEnter" MouseLeave="InfoImage_MouseLeave" />
+                    <CheckBox Canvas.Left="6" Canvas.Top="100" Content="{x:Static Member=resx:Resource.chkAllLayers}" Name="chkAllLayers" Checked="chkAllLayers_Checked" Unchecked="chkAllLayers_Unchecked" Width="251" />
+                    <Popup x:Name="PersonInfoPopup" PlacementTarget="{Binding ElementName=InfoImage}" Placement="Right" VerticalOffset="-50" HorizontalOffset="10" PopupAnimation="Fade" AllowsTransparency="True" SnapsToDevicePixels="False" HorizontalAlignment="Left" Margin="6,0,0,0">
+                        <Border BorderBrush="Black" BorderThickness="3" Height="212" Width="239" CornerRadius="10" Padding="2" Background="#FFE5E5E5">
+                                <RichTextBox Background="AliceBlue" BorderBrush="AliceBlue">
+                                    <FlowDocument>
+                                        <Paragraph TextAlignment="Center" FontSize="10pt">
+                                            <TextBlock> "Stylefile Information"</TextBlock>
+                                        </Paragraph>
+                                        <Paragraph TextAlignment="Left"  FontSize="8pt">
+                                            Please select a style file, which will be used for rendering the layer!
+                                        </Paragraph>
+                                        <Paragraph TextAlignment="Left"  FontSize="8pt">
+                                            If the style file is not loaded in the combobox, load the file into the Style Storage of ArcMap!
+                                            Therfore use the  menu 'Settings - Load Style file'!
+                                        </Paragraph>
+                                    </FlowDocument>
+                                </RichTextBox>
+                            </Border>
+                    </Popup>
+                        <Button Canvas.Left="129" Canvas.Top="138" ToolTipService.ShowOnDisabled="True" ToolTip="Fill in a layername an a legndtable for enabling this button" Content="{x:Static Member=resx:Resource.btnRenderer}" Height="23" Name="btnRenderer" Width="170" FontWeight="Bold" Click="btnRenderer_Click" IsEnabled="False" />
+                    </Canvas>
+            </GroupBox>
+
+            
+                <Label  Canvas.Left="9" Canvas.Top="13" Content="{x:Static Member=resx:Resource.lblLayername}" Name="lblLayername" Width="Auto" Height="Auto" />
+                <ComboBox  Canvas.Left="85" Canvas.Top="6" Height="23" Name="cboLayername" Width="240" IsEditable="True" Background="MistyRose" FontWeight="Black" FontSize="14" ItemsSource="{Binding}" DisplayMemberPath="FullName"  SelectionChanged="cboLayername_SelectionChanged" Foreground="Black">
+                </ComboBox>
+            </Canvas>
+        </ScrollViewer>
+    </DockPanel>
+    
+</Window>
